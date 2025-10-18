@@ -3,12 +3,12 @@
 namespace App\Core\Services\Auth;
 
 use App\Core\Contracts\IAuthService;
-use App\Core\Repositories\UserRepository;
+use App\Core\Repositories\Interfaces\IUserRepository;
 use Illuminate\Support\Facades\Auth;
 
 class AuthService implements IAuthService
 {
-    public function __construct(protected UserRepository $userRepository)
+    public function __construct(protected IUserRepository $userRepository)
     {
         //
     }
