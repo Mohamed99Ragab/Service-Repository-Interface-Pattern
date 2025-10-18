@@ -17,16 +17,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $platform = request()?->attributes?->get('platform', 'web');
-
-        $this->app->bind(IAuthService::class, function ($app) use ($platform) {
+        $this->app->bind(IAuthService::class, function ($app) {
+            $platform = request()?->attributes?->get('platform', 'web');
             return match ($platform) {
                 'mobile' => $app->make(AuthMobileService::class),
                 default => $app->make(AuthWebService::class),
             };
         });
 
-        $this->app->bind(IPostService::class, function ($app) use ($platform) {
+        $this->app->bind(IPostService::class, function ($app) {
+            $platform = request()?->attributes?->get('platform', 'web');
             return match ($platform) {
                 'mobile' => $app->make(PostMobileService::class),
                 default => $app->make(PostWebService::class),

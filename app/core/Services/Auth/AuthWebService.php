@@ -7,10 +7,9 @@ class AuthWebService extends AuthService {
     public function login(array $data) {
         $rep = parent::login($data);
 
-        if ($rep) {
+        if ($rep === true) {
             return redirect()->route('dashboard');
         }
-
         return redirect()->back()->with('error', 'Invalid credentials');
     }
 

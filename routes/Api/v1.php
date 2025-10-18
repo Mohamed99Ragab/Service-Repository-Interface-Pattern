@@ -19,7 +19,7 @@ Route::prefix('mobile')->middleware(['detect.platform:mobile'])->group(function 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/user',[AuthController::class,'user']);
         Route::get('/posts', [PostController::class, 'index']);
-        Route::get('/post/{id}', [PostController::class, 'getPost']);
+        Route::get('/posts/{id}', [PostController::class, 'getPost']);
         });
 
 });

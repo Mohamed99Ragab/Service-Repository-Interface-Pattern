@@ -4,6 +4,7 @@ namespace App\Core\Services\Auth;
 
 use App\Core\Contracts\IAuthService;
 use App\Core\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
 
 class AuthService implements IAuthService
 {
@@ -26,11 +27,7 @@ class AuthService implements IAuthService
 
     public function login(array $data)
     {
-        if (!auth()->attempt($data)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
-        }
-
-        return auth()->user();
+        return Auth::attempt($data);
     }
 
     public function register(array $data)
